@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EgyGulf Foods — Premium Candy &amp; Snacks Manufacturer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div id="cur"></div>
+    <div id="cur-f"></div>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="pmodal" role="dialog" aria-modal="true">
+        <div class="pm-box">
+            <div class="pm-hero" id="pm-hero">
+                <div class="pm-hero-glow" id="pm-glow"></div>
+                <div class="pm-hero-noise"></div>
+                <div class="pm-brand-pill" id="pm-brand"></div>
+                <!-- Product image in modal -->
+                <img id="pm-img" src="" alt="" style="position:relative;z-index:1;max-height:185px;max-width:52%;object-fit:contain;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.7));transition:transform .5s cubic-bezier(.34,1.56,.64,1);">
+                <button class="pm-close" onclick="closePModal()">✕</button>
+                <div class="pm-hero-nav" id="pm-dots"></div>
+            </div>
+            <div class="pm-body">
+                <div class="pm-eyebrow" id="pm-cat"></div>
+                <div class="pm-title" id="pm-title"></div>
+                <div class="pm-desc" id="pm-desc"></div>
+                <div class="pm-specs" id="pm-specs"></div>
+                <div class="pm-flavors" id="pm-flavors" style="display:none">
+                    <div class="pm-flavors-label">Available Flavors</div>
+                    <div class="pm-flavor-tags" id="pm-flavor-tags"></div>
+                </div>
+                <div class="pm-certs" id="pm-certs"></div>
+                <div class="pm-gallery" id="pm-gallery" style="display:none">
+                    <div class="pm-gallery-label">📦 All Packaging Formats</div>
+                    <div class="pm-gallery-track" id="pm-gallery-track"></div>
+                </div>
+                <div class="pm-actions">
+                    <button class="pm-btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});closePModal()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          Request This Product
+        </button>
+                    <button class="pm-btn-ghost" onclick="closePModal()">← Back to Products</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BRAND DETAIL MODAL -->
+    <div id="bmodal" role="dialog" aria-modal="true">
+        <div class="bm-box">
+            <div class="bm-header">
+                <div>
+                    <span class="bm-icon" id="bm-icon"></span>
+                    <div class="bm-name" id="bm-name"></div>
+                    <div class="bm-type" id="bm-type"></div>
+                </div>
+                <button class="bm-close" onclick="closeBModal()">✕</button>
+            </div>
+            <div class="bm-body">
+                <div class="bm-desc" id="bm-desc"></div>
+                <div class="bm-products-label">Products in this brand</div>
+                <div class="bm-product-list" id="bm-product-list"></div>
+                <div class="pm-actions" style="margin-top:.5rem">
+                    <button class="pm-btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});closeBModal()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          Contact About This Brand
+        </button>
+                    <button class="pm-btn-ghost" onclick="closeBModal()">← Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="ld-wordmark">Egy<em>Gulf</em> Foods</div>
+        <div class="ld-bar">
+            <div class="ld-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <a class="nav-logo" href="#">
+            <div class="logo-mark" style="background:transparent;padding:0;overflow:hidden;width:46px;height:46px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <img src="images/egygulf-logo.png" alt="EgyGulf Foods" style="width:46px;height:46px;object-fit:contain;filter:brightness(0) invert(1);">
+            </div>
+            <span class="logo-text">EgyGulf <span>Foods</span></span>
+        </a>
+        <ul class="nav-links" id="nl">
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#brands">Brands</a></li>
+            <li><a href="#export">Export</a></li>
+            <li><a href="#contact" class="nav-btn">Contact Us</a></li>
+        </ul>
+        <div class="ham" id="ham" onclick="toggleNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section id="hero">
+        <div class="hero-canvas">
+            <div class="hero-grid"></div>
+            <div class="noise"></div>
+            <div class="aurora-layer">
+                <div class="aurora-beam aurora-1"></div>
+                <div class="aurora-beam aurora-2"></div>
+                <div class="aurora-beam aurora-3"></div>
+            </div>
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="mesh m1"></div>
+            <div class="mesh m2"></div>
+            <div class="mesh m3"></div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+                <rect x="0.75" y="0.75" width="14.5" height="18.5" rx="7.25" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="7" y="4" width="2" height="5" rx="1" fill="currentColor"/>
+            </svg>
+        </div>
+        <div class="hero-inner">
+            <!-- LEFT COLUMN (scrolls UP) -->
+            <div class="products-showcase">
+                <div class="prod-col-wrapper">
+                    <div class="prod-col up" id="left-col"></div>
+                </div>
+            </div>
+
+            <!-- CENTER CONTENT -->
+            <div class="hero-center">
+                <h1 class="h-title">
+                    <span class="gold-t">Candy</span><br> &amp; <span class="outline-t">Snacks</span><br> Manufacturer
+                </h1>
+
+                <!-- ══ BRAND BANNER ══ -->
+                <div class="bbanner">
+
+                    <!-- يسار: صغير → كبير -->
+                    <div class="bb-side bb-left">
+                        <div class="bb-logo s1"><img src="images/honey-logo.png" alt="Honey"></div>
+                        <div class="bb-logo s3"><img src="images/chillout-logo.png" alt="ChillOut"></div>
+                    </div>
+
+                    <!-- وسط: لوجو EgyGulf -->
+                    <div class="bb-center">
+                        <img src="images/egygulf-logo-5.png" alt="EgyGulf" class="bb-egygulf">
+                        <div class="bb-name">EgyGulf <span>Foods</span></div>
+                    </div>
+
+                    <!-- يمين: كبير → صغير -->
+                    <div class="bb-side bb-right">
+                        <div class="bb-logo s3"><img src="images/lightpop-logo.png" alt="Light Pop"></div>
+                        <div class="bb-logo s2"><img src="images/mojo-logo.png" alt="Mojo"></div>
+                        <div class="bb-logo s1"><img src="images/honey-logo-9.png" alt="Honey"></div>
+                    </div>
+
+                </div>
+                <p class="h-sub">Egyptian Gulf International for Snacks &amp; Food Industries producing world-class confectionery trusted by distributors worldwide.</p>
+                <div class="h-actions">
+                    <a href="#products" class="btn-primary">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg> Explore Products
+                    </a>
+                    <a href="#contact" class="btn-ghost">Request Catalog</a>
+                </div>
+                <div class="h-stats">
+                    <div class="hst">
+                        <span class="hst-n">2004</span>
+                        <span class="hst-l">Established</span>
+                    </div>
+                    <div class="hst-div"></div>
+                    <div class="hst">
+                        <span class="hst-n">100+</span>
+                        <span class="hst-l">Products</span>
+                    </div>
+                    <div class="hst-div"></div>
+                    <div class="hst">
+                        <span class="hst-n">6</span>
+                        <span class="hst-l">Factories</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN (scrolls DOWN) -->
+            <div class="products-showcase">
+                <div class="prod-col-wrapper">
+                    <div class="prod-col down">
+                        <!-- Honey.png -->
+                        <div class="prod-card">
+                            <img src="images/honey-logo.png" alt="Honey">
+                            <div class="prod-card-label">Honey</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/lightpop-logo.png" alt="Light Pop">
+                            <div class="prod-card-label">Light Pop</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/bozo-puffs-alt.png" alt="Light Pop 2">
+                            <div class="prod-card-label">Light Pop 2</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/mojo-lolly.png" alt="Mojo">
+                            <div class="prod-card-label">Mojo</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/tutti-lolly.png" alt="Tutti Lolly">
+                            <div class="prod-card-label">Tutti Lolly</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/tutti-lolly-2.png" alt="Tutti Lolly 2">
+                            <div class="prod-card-label">Tutti Lolly 2</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/chillout-logo.png" alt="Fruits Lolly">
+                            <div class="prod-card-label">Fruits Lolly</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/honey-logo.png" alt="Honey">
+                            <div class="prod-card-label">Honey</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/lightpop-logo.png" alt="Light Pop">
+                            <div class="prod-card-label">Light Pop</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/zegzag-logo.png" alt="Zegzag">
+                            <div class="prod-card-label">Zegzag</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/mojo-lolly.png" alt="Mojo">
+                            <div class="prod-card-label">Mojo</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/tutti-lolly.png" alt="Tutti Lolly">
+                            <div class="prod-card-label">Tutti Lolly</div>
+                        </div>
+                        <div class="prod-card">
+                            <img src="images/crazy-logo.png" alt="Crazy">
+                            <div class="prod-card-label">Crazy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEFT COLUMN CONTENT (injected via JS) -->
+        <template id="left-col-tpl">
+            <div class="prod-card"><img src="images/artboard-7.png" alt="Artboard 7"><div class="prod-card-label">Artboard 7</div></div>
+            <div class="prod-card"><img src="images/oat-rings.png" alt="Oat Rings"><div class="prod-card-label">Oat Rings</div></div>
+            <div class="prod-card"><img src="images/bozo-puffs.png" alt="Bozo"><div class="prod-card-label">Bozo</div></div>
+            <div class="prod-card"><img src="images/chillout-oat-chips.png" alt="ChillOut"><div class="prod-card-label">ChillOut</div></div>
+            <div class="prod-card"><img src="images/fire-fingers.png" alt="Fire Fingers"><div class="prod-card-label">Fire Fingers</div></div>
+            <div class="prod-card"><img src="images/gourmet-popcorn.png" alt="Gourmet Popcorn"><div class="prod-card-label">Popcorn</div></div>
+            <div class="prod-card"><img src="images/tutti-lolly-2.png" alt="TuttiLolly"><div class="prod-card-label">TuttiLolly</div></div>
+            <div class="prod-card"><img src="images/artboard-7.png" alt="Artboard 7"><div class="prod-card-label">Artboard 7</div></div>
+            <div class="prod-card"><img src="images/oat-rings.png" alt="Oat Rings"><div class="prod-card-label">Oat Rings</div></div>
+            <div class="prod-card"><img src="images/bozo-puffs.png" alt="Bozo"><div class="prod-card-label">Bozo</div></div>
+            <div class="prod-card"><img src="images/chillout-oat-chips.png" alt="ChillOut"><div class="prod-card-label">ChillOut</div></div>
+            <div class="prod-card"><img src="images/fire-fingers.png" alt="Fire Fingers"><div class="prod-card-label">Fire Fingers</div></div>
+            <div class="prod-card"><img src="images/gourmet-popcorn.png" alt="Popcorn"><div class="prod-card-label">Popcorn</div></div>
+            <div class="prod-card"><img src="images/tutti-lolly-2.png" alt="TuttiLolly"><div class="prod-card-label">TuttiLolly</div></div>
+        </template>
+        <script>
+            (function() {
+                var tpl = document.getElementById('left-col-tpl');
+                var col = document.getElementById('left-col');
+                if (tpl && col) {
+                    col.innerHTML = tpl.innerHTML;
+                }
+            })();
+        </script>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-inner">
+            <span class="tick-item"><span class="tick-sep"></span>ChillOut Oat Chips</span>
+            <span class="tick-item"><span class="tick-sep"></span>Light Pop Lollipops</span>
+            <span class="tick-item"><span class="tick-sep"></span>Mojo Lollipop</span>
+            <span class="tick-item"><span class="tick-sep"></span>Honey Gum</span>
+            <span class="tick-item"><span class="tick-sep"></span>Crazy Crisps</span>
+            <span class="tick-item"><span class="tick-sep"></span>Bozo Puffs</span>
+            <span class="tick-item"><span class="tick-sep"></span>Tutti Lolly</span>
+            <span class="tick-item"><span class="tick-sep"></span>Fire Fingers</span>
+            <span class="tick-item"><span class="tick-sep"></span>Gourmet Popcorn</span>
+            <span class="tick-item"><span class="tick-sep"></span>ChillOut Oat Chips</span>
+            <span class="tick-item"><span class="tick-sep"></span>Light Pop Lollipops</span>
+            <span class="tick-item"><span class="tick-sep"></span>Mojo Lollipop</span>
+            <span class="tick-item"><span class="tick-sep"></span>Honey Gum</span>
+            <span class="tick-item"><span class="tick-sep"></span>Crazy Crisps</span>
+            <span class="tick-item"><span class="tick-sep"></span>Bozo Puffs</span>
+            <span class="tick-item"><span class="tick-sep"></span>Tutti Lolly</span>
+            <span class="tick-item"><span class="tick-sep"></span>Fire Fingers</span>
+            <span class="tick-item"><span class="tick-sep"></span>Gourmet Popcorn</span>
+        </div>
+    </div>
+
+    <!-- ══════════════ ABOUT ══════════════ -->
+    <section id="about">
+        <div class="about-wrap">
+            <div class="about-bento sr">
+                <div class="ab-card ab-big">
+                    <div class="ab-year">2004</div>
+                    <div class="ab-sub">Year of Establishment — Originally Delta Foods Industries</div>
+                </div>
+                <div class="ab-card ab-num sr d1">
+                    <div class="n">30+</div>
+                    <div class="l">Countries Worldwide</div>
+                </div>
+                <div class="ab-card ab-num sr d2">
+                    <div class="n">100+</div>
+                    <div class="l">Product SKUs</div>
+                </div>
+                <div class="ab-card ab-tag sr d1">
+                    <div class="ab-icon">🏆</div>
+                    <div class="t">HALAL</div>
+                    <div class="s">Certified</div>
+                </div>
+                <div class="ab-card ab-tag sr d2">
+                    <div class="ab-icon">📋</div>
+                    <div class="t">FDA</div>
+                    <div class="s">Approved</div>
+                </div>
+                <div class="ab-card ab-tag sr d3">
+                    <div class="ab-icon">✅</div>
+                    <div class="t">ISO 9001</div>
+                    <div class="s">Certified</div>
+                </div>
+            </div>
+
+            <div class="about-content">
+                <div class="sec-eyebrow sr">About Us</div>
+                <h2 class="sec-h2 sr d1">Pioneer in<br><span class="hl">Snacks & Confectionery</span><br>Since 2004</h2>
+                <p class="about-p sr d2">Egy Gulf Company was established in 2004 under the name Delta Foods Industries, later becoming the Egyptian-Gulf Company. A pioneer in the automatic production of snacks and dry confectionery, with branches throughout Egypt and an international
+                    presence in 30+ countries.</p>
+                <p class="about-p sr d2">Distinguished by introducing the first healthy oven-roasted snacks in Egypt, Egy Gulf employs the latest methods and advanced techniques ensuring the highest quality and compliance with global safety standards.</p>
+                <div class="about-feats sr d3">
+                    <div class="af-item">
+                        <div class="af-icon">🏭</div>
+                        <div class="af-text">
+                            <div class="t">Auto-Packaging Lines</div>
+                            <div class="s">Fully automated production</div>
+                        </div>
+                    </div>
+                    <div class="af-item">
+                        <div class="af-icon">🌿</div>
+                        <div class="af-text">
+                            <div class="t">Oven-Roasted — First in Egypt</div>
+                            <div class="s">Healthier snack innovation</div>
+                        </div>
+                    </div>
+                    <div class="af-item">
+                        <div class="af-icon">🚢</div>
+                        <div class="af-text">
+                            <div class="t">Global Export Network</div>
+                            <div class="s">5 continents covered</div>
+                        </div>
+                    </div>
+                    <div class="af-item">
+                        <div class="af-icon">🎯</div>
+                        <div class="af-text">
+                            <div class="t">6 Certifications</div>
+                            <div class="s">HALAL · FDA · ISO 22000/45001/9001</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#contact" class="btn-primary sr d4" style="display:inline-flex">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M3 8h10M9 4l4 4-4 4"/></svg> Partner With Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ PRODUCTS ══════════════ -->
+    <section id="products">
+        <div class="prod-wrap">
+            <div class="sec-header">
+                <div class="sec-eyebrow sr" style="justify-content:center">Product Catalog</div>
+                <h2 class="sec-h2 sr d1" style="text-align:center">Our <span class="hl">Products</span></h2>
+            </div>
+            <div class="prod-filter sr">
+                <button class="pf-btn active" onclick="filterP('all',this);hideLollyFilters();hideSnackFilters()">All</button>
+                <button class="pf-btn" onclick="filterP('snack',this);hideLollyFilters();showSnackFilters()">Snacks &amp; Chips</button>
+                <button class="pf-btn" onclick="filterP('lolly',this);showLollyFilters();hideSnackFilters()">Lollipops</button>
+                <button class="pf-btn" onclick="filterP('candy',this);hideLollyFilters();hideSnackFilters()">Candy &amp; Gum</button>
+            </div>
+            <div class="lolly-subfilter" id="lolly-subfilter" style="display:none;justify-content:center;gap:.5rem;margin-top:-.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                <button class="pf-btn pf-sub active" onclick="filterLolly('all',this)">All Lollipops</button>
+                <button class="pf-btn pf-sub" onclick="filterLolly('filled-gum',this)">Filled Gum</button>
+                <button class="pf-btn pf-sub" onclick="filterLolly('without-gum',this)">Without Gum</button>
+            </div>
+            <div class="lolly-subfilter" id="snack-subfilter" style="display:none;justify-content:center;gap:.5rem;margin-top:-.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+                <button class="pf-btn pf-sub active" onclick="filterSnack('chips',this)">Chips</button>
+                <button class="pf-btn pf-sub" onclick="filterSnack('puffs',this)">Puffs</button>
+                <button class="pf-btn pf-sub" onclick="filterSnack('popcorn',this)">Popcorn</button>
+            </div>
+            <div class="prod-grid" id="pg">
+
+
+                <div class="p-card" data-cat="lolly" data-lolly-type="without-gum" onclick="openPModal('lightpop-premium')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#7c2d12,#f97316)"></div>
+                        <div class="p-brand">Light Pop</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Light Pop Lollipop --><img src="images/lightpop-logo.png" alt="Light Pop Lollipop" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Lollipops — Coming Soon</div>
+                        <div class="p-name">Light Pop Premium Box</div>
+                        <div class="p-desc">Chili Mango · Dragon Fruit · Hazelnut Chocolate</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card featured" data-cat="lolly" data-lolly-type="without-gum" onclick="openPModal('lightpop-lolly')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#9d174d,#db2777)"></div>
+                        <div class="p-brand">Light Pop</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Bozo Puffs --><img src="images/bozo-puffs-alt.png" alt="Bozo Puffs" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Lollipops</div>
+                        <div class="p-name">Light Pop Fruits Lollipop — Multi-Format</div>
+                        <div class="p-desc">Natural Colors · Mix Flavors. Available in bags, jars, bus displays, car displays & tree displays. 50 to 150 pcs per pack.</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="lolly" data-lolly-type="filled-gum" onclick="openPModal('mojo-lolly')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#7c0000,#ef4444)"></div>
+                        <div class="p-brand">MOJO</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Mojo Lollipop --><img src="images/mojo-lollipop-product.png" alt="Mojo Lollipop" style="width:90%;height:90%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Bubble Gum Lollipop</div>
+                        <div class="p-name">Mojo Lollipop</div>
+                        <div class="p-desc">6 fruity flavors · Bus, Car & Box formats</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="lolly" data-lolly-type="without-gum" onclick="openPModal('tutti-lolly')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#713f12,#eab308)"></div>
+                        <div class="p-brand">Tutti Lolly</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Mojo Lollipop --><img src="images/tutti-lolly-2.png" alt="Mojo Lollipop" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Mini Lollipops</div>
+                        <div class="p-name">Tutti Lolly Mini & XXL</div>
+                        <div class="p-desc">Natural Colors · Mix Flavors · 2 sizes</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card featured" data-cat="candy" onclick="openPModal('honey-gum')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#8fb8f1,#199ef0)"></div>
+                        <div class="p-brand">HONEY</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Tutti Lolly --><img src="images/tutti-lolly-gum.png" alt="Tutti Lolly" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Chewing Gum</div>
+                        <div class="p-name">Honey Gum </div>
+                        <div class="p-desc">Strawberry · Mango · Mint · Cola · Milk. Center-filled chewing gum in box, jar & sugar-free Hacendado line formats.</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="candy" onclick="openPModal('lightpop-bonbon')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#1e1b4b,#6d28d9)"></div>
+                        <div class="p-brand">Light Pop</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Honey Gum --><img src="images/lightpop-fruits-lollipop.png" alt="Honey Gum" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Hard Candy</div>
+                        <div class="p-name">Light Pop Bon Bon</div>
+                        <div class="p-desc">Butter · Coffee · Cola · Mint · Strawberry</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="candy" onclick="openPModal('light-eclair')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#4a1942,#c026d3)"></div>
+                        <div class="p-brand">Light Pop</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Light Eclair --><img src="images/light-eclair-product.png" alt="Light Eclair" style="width:90%;height:90%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Candy</div>
+                        <div class="p-name">Light Eclair</div>
+                        <div class="p-desc">Caramel eclair — Bag, Box & Jar formats</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card featured" data-cat="snack" data-snack-type="chips" onclick="openPModal('chillout-oat')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#f6f6f6,#1d4ed8)"></div>
+                        <div class="p-brand">ChillOut</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Gourmet Popcorn --><img src="images/chillout-oat-chips.png" alt="Gourmet Popcorn" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Snacks & Chips</div>
+                        <div class="p-name"> Oat Chips</div>
+                        <div class="p-desc">Grilled BBQ · Sweet Chilli · Flamy Hot · Smoked Food · Chicken · Sour Cream. Oven-baked from whole oat grains — the first of its kind in Egypt.</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="snack" data-snack-type="chips" onclick="openPModal('fire-fingers')">
+                    <div class="p-visual">
+
+                        <div class="p-glow" style="background:linear-gradient(135deg,#7c2d12,#ea580c)"></div>
+                        <div class="p-brand">ChillOut</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- ChillOut Oat Chips --><img src="images/fire-fingers.png" alt="ChillOut Oat Chips" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Snacks</div>
+                        <div class="p-name">Fire Fingers</div>
+                        <div class="p-desc">Spicy Shrimp · Bold flavors. Never fried.</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="snack" data-snack-type="chips" onclick="openPModal('oat-rings')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#14532d,#16a34a)"></div>
+                        <div class="p-brand">ChillOut</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Fire Fingers --><img src="images/oat-rings.png" alt="Fire Fingers" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Snacks</div>
+                        <div class="p-name">Baked Oat Rings</div>
+                        <div class="p-desc">Grilled · Tomatoes · Spicy · Sweet BBQ</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="snack" data-snack-type="popcorn" onclick="openPModal('gourmet-popcorn')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#78350f,#d97706)"></div>
+                        <div class="p-brand">ChillOut</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Baked Oat Rings --><img src="images/gourmet-popcorn.png" alt="Baked Oat Rings" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Snacks</div>
+                        <div class="p-name">Gourmet Popcorn</div>
+                        <div class="p-desc">6 gourmet flavors. Premium quality.</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card featured" data-cat="snack" data-snack-type="chips" onclick="openPModal('crazy-crisps')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#450a0a,#dc2626)"></div>
+                        <div class="p-brand">Crazy</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Gourmet Popcorn --><img src="images/crazy-crisps-flaming-hot.png" alt="Gourmet Popcorn" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Snacks & Chips</div>
+                        <div class="p-name">Crazy Crisps — Flaming Hot Series</div>
+                        <div class="p-desc">Flaming Hot · Shrimps · Chicken · Tomatoes. 100% Natural. Zegzag brand. Bold taste for adventurous snackers.</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-card" data-cat="snack" data-snack-type="puffs" onclick="openPModal('bozo-puffs')">
+                    <div class="p-visual">
+                        <div class="p-glow" style="background:linear-gradient(135deg,#2e1065,#7c3aed)"></div>
+                        <div class="p-brand">Bozo</div>
+                        <div class="p-em" style="display:flex;align-items:center;justify-content:center;padding:4px;">
+                            <!-- Crazy Crisps Flaming Hot --><img src="images/bozo-puffs.png" alt="Crazy Crisps Flaming Hot" style="width:150%;height:150%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));"></div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-cat">Puffs</div>
+                        <div class="p-name">Bozo Puffs</div>
+                        <div class="p-desc">Mexican Salsa · BBQ · 5 flavors</div>
+                    </div>
+                    <div class="p-footer"><span class="p-sku">Customize</span>
+                        <div class="p-arr">
+                            <div class="arr-icon"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ BRANDS ══════════════ -->
+    <section id="brands">
+        <div class="brands-wrap">
+            <div style="margin-bottom:3.5rem">
+                <div class="sec-eyebrow sr">Brand Portfolio</div>
+                <h2 class="sec-h2 sr d1">Our <span class="hl">Brands</span></h2>
+            </div>
+            <div class="brands-bento">
+                <div class="br-card sr" onclick="openBModal('chillout')">
+                    <div class="br-inner">
+                        <!-- Brand: ChillOut --><img class="br-icon" src="images/chillout-logo.png" alt="ChillOut" style="object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));width:150px;height:150px;">
+                        <div class="br-name">ChillOut</div>
+                        <div class="br-type">Snacks & Chips</div>
+                        <div class="br-desc">Premium oven-roasted oat chips, corn fingers, fire fingers, puffs & gourmet popcorn</div><span class="br-count">7 Products</span></div>
+                </div>
+                <div class="br-card sr d1" onclick="openBModal('lightpop')">
+                    <div class="br-inner">
+                        <!-- Brand: Light Pop --><img class="br-icon" src="images/lightpop-logo.png" alt="Light Pop" style="object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));width:150px;height:150px;">
+                        <div class="br-name">Light Pop</div>
+                        <div class="br-type">Lollipops & Candy</div>
+                        <div class="br-desc">Fruits lollipops, premium boxes, bon bons, toffee & eclair in multiple packaging formats</div><span class="br-count">2 Products</span></div>
+                </div>
+                <div class="br-card sr d2" onclick="openBModal('mojo')">
+                    <div class="br-inner">
+                        <!-- Brand: Mojo --><img class="br-icon" src="images/mojo-lolly.png" alt="Mojo" style="object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));width:150px;height:150px;">
+                        <div class="br-name">Mojo</div>
+                        <div class="br-type">Bubble Gum Lollipops</div>
+                        <div class="br-desc">Fun bubble gum-filled lollipops in bus, car & box display formats — kids' favourite</div><span class="br-count">1 Products</span></div>
+                </div>
+                <div class="br-card sr d3" onclick="openBModal('honeygum')">
+                    <div class="br-inner">
+                        <!-- Brand: Honey Gum --><img class="br-icon" src="images/honey-logo.png" alt="Honey Gum" style="object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));width:150px;height:150px;">
+                        <div class="br-name">Honey Gum</div>
+                        <div class="br-type">Chewing Gum</div>
+                        <div class="br-desc">Center-filled gum in box & jar + sugar-free Hacendado line for health-conscious consumers</div><span class="br-count">1 Products</span></div>
+                </div>
+                <div class="br-card wide sr" onclick="openBModal('crazy')">
+                    <div class="br-inner">
+                        <!-- Brand: Crazy Crisps --><img class="br-icon" src="images/crazy-logo.png" alt="Crazy" style="object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));width:150px;height:150px;">
+                        <div class="br-name">Crazy Frido</div>
+                        <div class="br-type">Crisps & Corn Snacks</div>
+                        <div class="br-desc">Bold flaming hot crisps (Zegzag) and Frido corn snacks for adventurous snack lovers. 100% Natural ingredients, packed for Gulf and international export markets.</div><span class="br-count">1 Products</span></div>
+                </div>
+                <div class="br-card sr d1" onclick="openBModal('bozo')">
+                    <div class="br-inner">
+                        <!-- Brand: Bozo Puffs --><img class="br-icon" src="images/bozo-logo.png" alt="Bozo" style="object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));width:150px;height:150px;">
+                        <div class="br-name">Bozo</div>
+                        <div class="br-type">Puffs</div>
+                        <div class="br-desc">Big-bag puffs — Mexican Salsa, BBQ & more</div><span class="br-count">1 Products</span></div>
+                </div>
+                <div class="br-card sr d2" onclick="openBModal('tutti')">
+                    <div class="br-inner">
+                        <!-- Brand: Tutti Lolly --><img class="br-icon" src="images/tutti-lolly.png" alt="Tutti Lolly" style="object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));width:150px;height:150px;">
+                        <div class="br-name">Tutti Lolly</div>
+                        <div class="br-type">Mini Lollipops</div>
+                        <div class="br-desc">Colorful mini & XXL lollipops with natural colors</div><span class="br-count">2 Products</span></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ EXPORT ══════════════ -->
+    <section id="export">
+        <div class="export-wrap">
+            <div class="export-grid">
+                <div class="export-content">
+                    <div class="sec-eyebrow sr">Global Reach</div>
+                    <h2 class="sec-h2 sr d1">Our<br><span class="hl">Global Reach</span></h2>
+                    <p class="about-p sr d2">From our facility at Kilo 90, Tanta — Cairo-Alex Agro Road, we serve importers, distributors and retailers across the Middle East, Europe, Africa, North America and Asia.</p>
+                    <div class="export-feats sr d3">
+                        <div class="ef-item">
+                            <div class="ef-icon">📦</div>
+                            <div class="ef-text"><strong>Private Label / OEM</strong><span>Custom branding & packaging for your market</span></div>
+                        </div>
+                        <div class="ef-item">
+                            <div class="ef-icon">📋</div>
+                            <div class="ef-text"><strong>Full Compliance Documentation</strong><span>HALAL, FDA, ISO 22000/45001/9001 for all markets</span></div>
+                        </div>
+                        <div class="ef-item">
+                            <div class="ef-icon">🚢</div>
+                            <div class="ef-text"><strong>Reliable Logistics</strong><span>Tanta factory — direct export capability</span></div>
+                        </div>
+                        <div class="ef-item">
+                            <div class="ef-icon">🤝</div>
+                            <div class="ef-text"><strong>Exclusive Distribution Deals</strong><span>Territory agreements available</span></div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn-primary sr d4" style="display:inline-flex">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M3 8h10M9 4l4 4-4 4"/></svg> Become a Distributor
+                    </a>
+                </div>
+                <div class="globe-card sr d2">
+                    <div class="gc-header">
+                        <span class="gc-title">Export Countries</span>
+                        <span class="gc-badge">5 Continents</span>
+                    </div>
+                    <div class="countries-g">
+                        <div class="cntry"><span class="cntry-flag">🇸🇦</span>Saudi Arabia</div>
+                        <div class="cntry"><span class="cntry-flag">🇦🇪</span>UAE</div>
+                        <div class="cntry"><span class="cntry-flag">🇶🇦</span>Qatar</div>
+                        <div class="cntry"><span class="cntry-flag">🇰🇼</span>Kuwait</div>
+                        <div class="cntry"><span class="cntry-flag">🇧🇭</span>Bahrain</div>
+                        <div class="cntry"><span class="cntry-flag">🇴🇲</span>Oman</div>
+                        <div class="cntry"><span class="cntry-flag">🇩🇪</span>Germany</div>
+                        <div class="cntry"><span class="cntry-flag">🇫🇷</span>France</div>
+                        <div class="cntry"><span class="cntry-flag">🇸🇪</span>Sweden</div>
+                        <div class="cntry"><span class="cntry-flag">🇺🇸</span>America</div>
+                        <div class="cntry"><span class="cntry-flag">🇹🇷</span>Netherlands</div>
+                        <div class="cntry"><span class="cntry-flag">🇮🇳</span>India</div>
+                        <div class="cntry"><span class="cntry-flag">🇰🇪</span>Kenya</div>
+                        <div class="cntry"><span class="cntry-flag">🇯🇴</span>Jordan</div>
+                        <div class="cntry"><span class="cntry-flag">🇱🇧</span>Lebanon</div>
+                        <div class="cntry"><span class="cntry-flag">🇲🇦</span>Morocco</div>
+                        <div class="cntry"><span class="cntry-flag">🇧🇭</span>Belgium</div>
+                        <div class="cntry"><span class="cntry-flag">🇴🇲</span>Libya</div>
+                        <div class="cntry"><span class="cntry-flag">🇩🇪</span>Madagascar</div>
+                        <div class="cntry"><span class="cntry-flag">🇫🇷</span>Iraq</div>
+                        <div class="cntry"><span class="cntry-flag">🇸🇪</span>Palestine</div>
+                        <div class="cntry"><span class="cntry-flag">🇺🇸</span>Yemen</div>
+                        <div class="cntry"><span class="cntry-flag">🇹🇷</span>South Africa</div>
+                        <div class="cntry"><span class="cntry-flag">🇮🇳</span>Mauritius</div>
+                        <div class="cntry"><span class="cntry-flag">🇰🇪</span>Sudan</div>
+                        <div class="cntry"><span class="cntry-flag">🇱🇧</span>Austria</div>
+                        <div class="cntry"><span class="cntry-flag">🇲🇦</span>Syria</div>
+                        <div class="cntry"><span class="cntry-flag">🇲🇦</span>England</div>
+
+
+
+                    </div>
+                    <div class="gc-total">
+                        <strong>5 Continents</strong>
+                        <span>America · Europe · Asia · Africa · Middle East</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ WHY US ══════════════ -->
+    <section id="why">
+        <div class="why-wrap">
+            <div style="text-align:center;margin-bottom:0">
+                <div class="sec-eyebrow sr" style="justify-content:center">Why EgyGulf</div>
+                <h2 class="sec-h2 sr d1" style="text-align:center">The <span class="hl">EgyGulf Advantage</span></h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card sr">
+                    <div class="wc-icon wc-i1">🏭</div>
+                    <div class="wc-title">Auto-Packaging Production</div>
+                    <div class="wc-desc">Fully automated production lines ensure consistent quality at massive scale, meeting international food safety standards on every single batch.</div>
+                </div>
+                <div class="why-card sr d1">
+                    <div class="wc-icon wc-i2">🌿</div>
+                    <div class="wc-title">First Oven-Roasted Snacks in Egypt</div>
+                    <div class="wc-desc">Pioneers of healthy oven-roasted snacks in Egypt — delivering a healthier alternative without sacrificing flavor, texture, or crunch.</div>
+                </div>
+                <div class="why-card sr d2">
+                    <div class="wc-icon wc-i3">✅</div>
+                    <div class="wc-title">6 International Certifications</div>
+                    <div class="wc-desc">HALAL, HACCP, FDA, ISO 22000, ISO 45001, ISO 9001 — fully certified and compliant for the world's most demanding import markets.</div>
+                </div>
+                <div class="why-card sr d3">
+                    <div class="wc-icon wc-i4">🌍</div>
+                    <div class="wc-title">Proven Global Export Track Record</div>
+                    <div class="wc-desc">20+ years of exporting with established supply chains, documentation and logistics from Tanta, Egypt.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ CONTACT ══════════════ -->
+    <section id="contact">
+        <div class="contact-wrap">
+            <div class="contact-grid">
+                <div class="c-info">
+                    <div class="sec-eyebrow sr">Get In Touch</div>
+                    <h2 class="sec-h2 sr d1">Partner With<br><span class="hl">EgyGulf Foods</span></h2>
+                    <p class="c-info-desc sr d2">Whether you're a distributor, importer, or retailer — contact our export team for pricing, catalog requests & partnership opportunities.</p>
+                    <div class="c-details sr d3">
+                        <div class="c-det">
+                            <div class="c-det-icon">📍</div>
+                            <div class="c-det-text">
+                                <div class="lbl">Factory Address</div>
+                                <div class="val">Kilo 90, Tanta – Cairo-Alex Agro Road, Egypt</div>
+                            </div>
+                        </div>
+                        <div class="c-det">
+                            <div class="c-det-icon">📞</div>
+                            <div class="c-det-text">
+                                <div class="lbl">Phone</div>
+                                <div class="val">01099281170 · 01224055808</div>
+                            </div>
+                        </div>
+                        <div class="c-det">
+                            <div class="c-det-icon">📧</div>
+                            <div class="c-det-text">
+                                <div class="lbl">Export Email</div>
+                                <div class="val">export@egygulf-foods.com</div>
+                            </div>
+                        </div>
+                        <div class="c-det">
+                            <div class="c-det-icon">🌐</div>
+                            <div class="c-det-text">
+                                <div class="lbl">Website</div>
+                                <div class="val">www.egygulf-foods.com</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="wa-link sr d4" href="https://wa.me/201099281170" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>                        Chat on WhatsApp
+                    </a>
+                </div>
+                <div class="c-form sr d2">
+                    <div class="form-row">
+                        <div class="fg"><label>First Name</label><input id="f-first" type="text" placeholder="kareem"></div>
+                        <div class="fg"><label>Last Name</label><input id="f-last" type="text" placeholder="Hassan"></div>
+                    </div>
+                    <div class="fg"><label>Company</label><input id="f-company" type="text" placeholder="Your Company Name"></div>
+                    <div class="fg"><label>Country</label><input id="f-country" type="text" placeholder="Saudi Arabia, UAE, Germany…"></div>
+                    <div class="fg"><label>Email</label><input id="f-email" type="email" placeholder="ayman@company.com"></div>
+                    <div class="fg"><label>Inquiry Type</label>
+                        <select id="f-inquiry">
+            <option>Distribution Partnership</option>
+            <option>Product Catalog Request</option>
+            <option>Private Label / OEM</option>
+            <option>Export Pricing</option>
+            <option>General Inquiry</option>
+          </select>
+                    </div>
+                    <div class="fg"><label>Message</label><textarea id="f-message" placeholder="Tell us about your needs, target quantities, or market…"></textarea></div>
+                    <button class="f-submit ripple-host" id="f-submit-btn" onclick="submitForm(this)">Send Message →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast notification -->
+    <div id="toast"></div>
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress"></div>
+    <!-- Floating particles -->
+
+    <!-- FOOTER -->
+
+    <!-- Floating Contact Buttons -->
+    <div class="float-contacts">
+        <a class="fc-btn fc-wa" href="https://wa.me/201099281170" target="_blank" rel="noopener" title="WhatsApp 01099281170">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="fc-label">واتساب · 01099281170</span>
+        </a>
+        <a class="fc-btn fc-mail" href="mailto:export@egygulf-foods.com" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            <span class="fc-label">ايميل</span>
+        </a>
+        <a class="fc-btn fc-comp" href="https://wa.me/201222574360" target="_blank" rel="noopener" title="شكاوي ومقترحات 01222574360">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span class="fc-label">شكاوي · 01222574360</span>
+        </a>
+    </div>
+
+
+    <!-- IMAGE ZOOM LIGHTBOX -->
+    <div id="img-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button id="lb-close" title="Close (Esc)">&#10005;</button>
+        <div id="lb-hint">Scroll to zoom &nbsp;&bull;&nbsp; Drag to pan &nbsp;&bull;&nbsp; Double-click to reset</div>
+        <img id="lb-img" src="" alt="" draggable="false">
+        <div id="lb-zoom-bar">
+            <button class="lb-zoom-btn" id="lb-btn-out" title="Zoom out">&#8722;</button>
+            <span id="lb-zoom-pct">100%</span>
+            <button class="lb-zoom-btn" id="lb-btn-in" title="Zoom in">&#43;</button>
+            <button class="lb-zoom-btn" id="lb-btn-reset" title="Reset" style="font-size:.7rem;letter-spacing:.04em;width:auto;border-radius:20px;padding:0 .6rem;">FIT</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-wrap">
+            <div class="foot-top">
+                <div>
+                    <span class="foot-logo">egy<em>gulf</em> Foods</span>
+                    <p class="foot-p">Egyptian Gulf International for Snacks & Food Industries — pioneer in premium candy & snack manufacturing since 2004.</p>
+                    <address class="foot-addr">Kilo 90, Tanta – Cairo-Alex Agro Road<br>Arab Republic of Egypt</address>
+                </div>
+                <div class="foot-col">
+                    <h5>Products</h5>
+                    <ul>
+                        <li><a href="#products">Snacks & Chips</a></li>
+                        <li><a href="#products">Lollipops</a></li>
+                        <li><a href="#products">Gum & Candy</a></li>
+                        <li><a href="#products">Sugar-Free</a></li>
+                    </ul>
+                </div>
+                <div class="foot-col">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#brands">Our Brands</a></li>
+                        <li><a href="#export">Export</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="foot-col">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="tel:01099281170">01099281170</a></li>
+                        <li><a href="tel:01222574360">01222574360</a></li>
+                        <li><a href="mailto:export@egygulf-foods.com">export@egygulf-foods.com</a></li>
+                        <li><a href="#">egygulf-foods.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <p>© 2025 EgyGulf Foods · Egyptian Gulf International For Snacks & Food Industries. All rights reserved.</p>
+                <div class="socials"><a class="soc" href="#">f</a><a class="soc" href="#">in</a><a class="soc" href="#">ig</a><a class="soc" href="#">yt</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <!-- External JS -->
+    <script src="js/data.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/lightbox.js"></script>
+
+
+    <script>
+        // Light Eclair modal image override
+        (function() {
+            var _lightEclairSrc = "images/light-eclair-product.png";
+            window.addEventListener('load', function() {
+                var origOpen = window.openPModal;
+                if (typeof origOpen === 'function') {
+                    window.openPModal = function(id) {
+                        origOpen(id);
+                        if (id === 'light-eclair') {
+                            var img = document.getElementById('pm-img');
+                            if (img) {
+                                img.src = _lightEclairSrc;
+                                img.alt = 'Light Eclair';
+                            }
+                        }
+                    };
+                } else {
+                    // Fallback: watch for modal opening via MutationObserver
+                    var modal = document.getElementById('pmodal');
+                    if (modal) {
+                        var obs = new MutationObserver(function() {
+                            if (modal.classList.contains('open') || modal.style.display !== 'none') {
+                                var title = document.getElementById('pm-title');
+                                if (title && title.textContent.indexOf('Eclair') !== -1) {
+                                    var img = document.getElementById('pm-img');
+                                    if (img) {
+                                        img.src = _lightEclairSrc;
+                                        img.alt = 'Light Eclair';
+                                    }
+                                }
+                            }
+                        });
+                        obs.observe(modal, {
+                            attributes: true,
+                            attributeFilter: ['class', 'style']
+                        });
+                    }
+                }
+            });
+        })();
+
+        // ── Mojo Lollipop modal override ──────────────────────────────────────────
+        (function() {
+            var _mojoSrc = "images/mojo-lollipop-product.png";
+            var _mojoGallery = [{
+                src: "images/mojo-jar.png",
+                label: "Jar Display"
+            }, {
+                src: "images/mojo-red-bag.png",
+                label: "Red Bag"
+            }, {
+                src: "images/mojo-blue-bag.png",
+                label: "Blue Bag"
+            }, {
+                src: "images/mojo-yellow-bag.png",
+                label: "Yellow Bag"
+            }];
+            window.addEventListener('load', function() {
+                var orig = window.openPModal;
+                if (typeof orig === 'function') {
+                    window.openPModal = function(id) {
+                        orig(id);
+                        if (id === 'mojo-lolly') {
+                            var img = document.getElementById('pm-img');
+                            if (img) {
+                                img.src = _mojoSrc;
+                                img.alt = 'Mojo Lollipop';
+                            }
+                            var galleryEl = document.getElementById('pm-gallery');
+                            var trackEl = document.getElementById('pm-gallery-track');
+                            if (trackEl) {
+                                trackEl.innerHTML = '';
+                                _mojoGallery.forEach(function(item) {
+                                    var thumb = document.createElement('img');
+                                    thumb.src = item.src;
+                                    thumb.alt = item.label;
+                                    thumb.title = item.label;
+                                    thumb.style.cssText = 'height:90px;object-fit:contain;border-radius:8px;background:#111;padding:4px;cursor:pointer;margin:4px;';
+                                    thumb.onclick = (function(s) {
+                                        return function() {
+                                            document.getElementById('pm-img').src = s;
+                                        };
+                                    })(item.src);
+                                    trackEl.appendChild(thumb);
+                                });
+                                if (galleryEl) galleryEl.style.display = '';
+                            }
+                        }
+                    };
+                }
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
