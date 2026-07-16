@@ -4025,3 +4025,178 @@
     font-style: italic;
     cursor: default;
 }
+
+/* ═══════════════════════════════════════════════
+   UI POLISH & ACCESSIBILITY LAYER
+   ═══════════════════════════════════════════════ */
+
+/* --- Keyboard focus visibility (WCAG 2.4.7) --- */
+a:focus-visible,
+button:focus-visible,
+[onclick]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--gold, #ffb607);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* --- Clickable cards should look and act clickable --- */
+.p-card,
+.br-card,
+.prod-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Smoother, more consistent card hover --- */
+.p-card {
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1),
+                box-shadow .35s cubic-bezier(.22, 1, .36, 1),
+                border-color .35s ease;
+    will-change: transform;
+}
+
+.p-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 44px -12px rgba(0, 0, 0, .55);
+}
+
+.p-card:active {
+    transform: translateY(-2px) scale(.995);
+}
+
+/* --- Product images: prevent layout shift & squashing --- */
+.p-em img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* --- Text rendering polish --- */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* --- Prevent long words breaking layout --- */
+.p-desc,
+.br-desc,
+.about-p,
+.wc-desc {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* --- Consistent card body height so grids align --- */
+.p-body {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.p-desc {
+    line-height: 1.55;
+}
+
+/* --- Filter buttons: clearer active/hover state --- */
+.pf-btn {
+    transition: background .25s ease, color .25s ease,
+                border-color .25s ease, transform .2s ease;
+}
+
+.pf-btn:hover {
+    transform: translateY(-2px);
+}
+
+.pf-btn:active {
+    transform: translateY(0);
+}
+
+/* --- Images shouldn't be draggable ghosts --- */
+img {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* --- Selection colour on brand --- */
+::selection {
+    background: var(--gold, #ffb607);
+    color: #10100c;
+}
+
+/* --- Custom scrollbar --- */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold, #ffb607) transparent;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, .04);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 182, 7, .5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold, #ffb607);
+}
+
+/* --- Mobile: tighter grids, bigger tap targets --- */
+@media (max-width: 640px) {
+    .pf-btn {
+        min-height: 42px;
+        padding-inline: .9rem;
+    }
+    .p-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    .br-icon {
+        width: 110px !important;
+        height: 110px !important;
+    }
+}
+
+/* --- Respect reduced-motion preference (WCAG 2.3.3) --- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .particles-canvas,
+    .particle {
+        display: none !important;
+    }
+}
+
+/* --- Print --- */
+@media print {
+    .particles-canvas,
+    nav,
+    .ticker,
+    footer {
+        display: none !important;
+    }
+    body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+}
