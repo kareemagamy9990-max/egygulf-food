@@ -4200,3 +4200,61 @@ img {
         color: #000 !important;
     }
 }
+
+/* ═══ BRAND BANNER — symmetry & responsive fix ═══ */
+
+/* Equal-width sides keep the EgyGulf logo optically centred
+   even if one side has a different number of logos */
+.bbanner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bb-side {
+    flex: 1 1 0;
+    min-width: 0;
+    flex-wrap: nowrap;
+}
+
+/* Mirror the right side so sizes step down away from centre */
+.bb-right {
+    justify-content: flex-start;
+}
+
+.bb-left {
+    justify-content: flex-end;
+}
+
+/* Keyboard focus for banner logos (they have cursor:pointer) */
+.bb-logo:focus-visible {
+    outline: 2px solid var(--gold, #ffb607);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* Tablet — scale logos down proportionally */
+@media (max-width: 1024px) {
+    .bb-logo.s1 img { width: 38px; height: 38px; }
+    .bb-logo.s2 img { width: 54px; height: 54px; }
+    .bb-logo.s3 img { width: 74px; height: 74px; }
+    .bb-egygulf   { width: 92px;  height: 92px; }
+    .bb-center    { padding: 0 1rem; }
+    .bb-side      { gap: .5rem; }
+}
+
+/* Mobile — drop the smallest logos, keep it clean instead of cramped */
+@media (max-width: 720px) {
+    .bb-logo.s1 { display: none; }
+    .bb-logo.s2 img { width: 42px; height: 42px; }
+    .bb-logo.s3 img { width: 56px; height: 56px; }
+    .bb-egygulf   { width: 76px;  height: 76px; }
+    .bb-center    { padding: 0 .7rem; }
+    .bb-name      { font-size: .9rem; }
+}
+
+@media (max-width: 480px) {
+    .bb-logo.s2 { display: none; }
+    .bb-logo.s3 img { width: 46px; height: 46px; }
+    .bb-egygulf   { width: 64px;  height: 64px; }
+}
