@@ -195,7 +195,7 @@ const PACK_IMAGES = {
                     l: 'Brand',
                     v: 'ChillOut'
                 }],
-                certs: ['HALAL', 'ISO 22000', 'FDA']
+                certs: ['HALAL', 'ISO 22000', 'FDA', 'HACCP']
             },
             'oat-rings': {
                 brand: 'ChillOut',
@@ -219,7 +219,7 @@ const PACK_IMAGES = {
                     l: 'Brand',
                     v: 'ChillOut'
                 }],
-                certs: ['HALAL', 'ISO 22000']
+                certs: ['HALAL', 'ISO 22000', 'HACCP']
             },
             'gourmet-popcorn': {
                 brand: 'ChillOut',
@@ -243,7 +243,7 @@ const PACK_IMAGES = {
                     l: 'Type',
                     v: 'Gourmet'
                 }],
-                certs: ['HALAL', 'ISO 22000']
+                certs: ['HALAL', 'ISO 22000', 'HACCP']
             },
             'crazy-crisps': {
                 brand: 'Crazy / Zegzag',
@@ -267,7 +267,7 @@ const PACK_IMAGES = {
                     l: 'Type',
                     v: '100% Natural'
                 }],
-                certs: ['HALAL', 'ISO 22000', 'FDA']
+                certs: ['HALAL', 'ISO 22000', 'FDA', 'HACCP']
             },
             'bozo-puffs': {
                 brand: 'Bozo',
@@ -291,7 +291,7 @@ const PACK_IMAGES = {
                     l: 'Type',
                     v: 'Corn Puffs'
                 }],
-                certs: ['HALAL', 'ISO 22000']
+                certs: ['HALAL', 'ISO 22000', 'HACCP']
             },
             'lightpop-lolly': {
                 brand: 'Light Pop',
@@ -315,7 +315,7 @@ const PACK_IMAGES = {
                     l: 'Display Types',
                     v: 'Bag · Jar · Bus · Car · Tree'
                 }],
-                certs: ['HALAL', 'ISO 22000', 'FDA', 'Natural Colors']
+                certs: ['HALAL', 'ISO 22000', 'FDA', 'Natural Colors', 'HACCP']
             },
             'lightpop-premium': {
                 brand: 'Light Pop',
@@ -339,7 +339,7 @@ const PACK_IMAGES = {
                     l: 'Status',
                     v: 'Coming Soon'
                 }],
-                certs: ['HALAL', 'ISO 22000']
+                certs: ['HALAL', 'ISO 22000', 'HACCP']
             },
             'mojo-lolly': {
                 brand: 'MOJO',
@@ -363,7 +363,7 @@ const PACK_IMAGES = {
                     l: 'Type',
                     v: 'Bubble Gum Center'
                 }],
-                certs: ['HALAL', 'ISO 22000']
+                certs: ['HALAL', 'ISO 22000', 'HACCP']
             },
             'tutti-lolly': {
                 brand: 'Tutti Lolly',
@@ -373,7 +373,7 @@ const PACK_IMAGES = {
                 name: 'Tutti Lolly Mini & XXL',
                 desc: 'Colorful mini and XXL lollipops made with Natural Colors and mix flavors. Available in 2 sizes — perfect for impulse display and kids gifting markets.',
                 glow: 'linear-gradient(135deg,#713f12,#eab308)',
-                flavors: ['Mix Fruits', 'Strawberry', 'Orange', 'Lemon', 'Cola'],
+                flavors: ['Mix Fruits', 'Strawberry', 'Mango', 'Apple', 'Berry', 'Cola'],
                 specs: [{
                     l: 'Pack Size',
                     v: 'Customizable'
@@ -387,17 +387,17 @@ const PACK_IMAGES = {
                     l: 'Sizes',
                     v: 'Mini & XXL'
                 }],
-                certs: ['HALAL', 'ISO 22000', 'Natural Colors']
+                certs: ['HALAL', 'ISO 22000', 'Natural Colors', 'HACCP']
             },
             'honey-gum': {
                 brand: 'HONEY',
                 cat: 'Chewing Gum',
                 img: 'Honey.png',
                 em: '🍯',
-                name: 'Honey Gum — 7 Flavors',
+                name: 'Honey Gum — 6 Flavors',
                 desc: 'Center-filled chewing gum with a liquid honey core. Available in box, jar and the health-focused Hacendado sugar-free line. A staple product across all EgyGulf export markets.',
                 glow: 'linear-gradient(135deg,#064e3b,#10b981)',
-                flavors: ['Strawberry', 'Mango', 'Mint', 'Cola', 'Milk', 'Lemon', 'Watermelon'],
+                flavors: ['Strawberry', 'Mango', 'Mint', 'Cola', 'Apple', 'Banana'],
                 specs: [{
                     l: 'Pack Sizes',
                     v: 'Customizable'
@@ -411,7 +411,7 @@ const PACK_IMAGES = {
                     l: 'Type',
                     v: 'Center-Filled'
                 }],
-                certs: ['HALAL', 'ISO 22000', 'FDA']
+                certs: ['HALAL', 'ISO 22000', 'FDA', 'HACCP']
             },
             'lightpop-bonbon': {
                 brand: 'Light Pop',
@@ -421,7 +421,7 @@ const PACK_IMAGES = {
                 name: 'Light Pop Bon Bon',
                 desc: 'Classic hard candy bon bons in beloved familiar flavors. Sold in bags and jars — suitable for counter display and bulk retail.',
                 glow: 'linear-gradient(135deg,#1e1b4b,#6d28d9)',
-                flavors: ['Butter', 'Coffee', 'Cola', 'Mint', 'Strawberry'],
+                flavors: ['Butter', 'Coffee', 'Cola', 'Mint', 'Fruits', 'Milk'],
                 specs: [{
                     l: 'Pack Sizes',
                     v: 'Customizable'
@@ -435,7 +435,7 @@ const PACK_IMAGES = {
                     l: 'Type',
                     v: 'Hard Candy'
                 }],
-                certs: ['HALAL', 'ISO 22000']
+                certs: ['HALAL', 'ISO 22000', 'HACCP']
             },
             'light-eclair': {
                 brand: 'Light Pop',
@@ -459,7 +459,7 @@ const PACK_IMAGES = {
                     l: 'Type',
                     v: 'Toffee Eclair'
                 }],
-                certs: ['HALAL', 'ISO 22000']
+                certs: ['HALAL', 'ISO 22000', 'HACCP']
             }
         };
 
