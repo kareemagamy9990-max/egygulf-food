@@ -301,7 +301,7 @@ const PACK_IMAGES = {
                 name: 'Light Pop Fruits Lollipop — Multi-Format',
                 desc: 'Natural Colors. Mix Flavors. Available in bags, jars, bus displays, car displays and tree displays — making it one of the most versatile lollipop ranges in the Egyptian export market.',
                 glow: 'linear-gradient(135deg,#9d174d,#db2777)',
-                flavors: ['Strawberry', 'Mango', 'Orange', 'Lemon', 'Watermelon', 'Cola', 'Cherry'],
+                flavors: ['Strawberry', 'Mango', 'Watermelon', 'Cola', 'Cherry'],
                 specs: [{
                     l: 'Pack Sizes',
                     v: 'Customizable'
@@ -349,7 +349,7 @@ const PACK_IMAGES = {
                 name: 'Mojo Lollipop',
                 desc: 'Fruit-flavored lollipops with a center-filled bubble gum core. A kid-favorite format in bus, car, and box display configurations. Drives strong repeat purchase.',
                 glow: 'linear-gradient(135deg,#7c0000,#ef4444)',
-                flavors: ['Strawberry', 'Watermelon', 'Orange', 'Lemon', 'Raspberry', 'Cola'],
+                flavors: ['Tropical Fruit', 'Mango', 'Cola', 'Strawberry', 'Watermelon', 'Green Apple'],
                 specs: [{
                     l: 'Pack Sizes',
                     v: 'Customizable'
