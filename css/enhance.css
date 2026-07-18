@@ -28,11 +28,13 @@
   overflow: hidden;
 }
 body{ position: relative; }
-/* نتأكد إن المحتوى فوق الأضواء */
-#nav, section, footer, .ticker, #pmodal, #bmodal, #img-lightbox, #loader{
+/* نتأكد إن المحتوى فوق الأضواء — من غير ما نلمس nav/loader (fixed أصلاً) */
+section, footer, .ticker{
   position: relative;
   z-index: 2;
 }
+#nav{ z-index: 50; }
+#pmodal, #bmodal, #img-lightbox, #loader{ z-index: 100; }
 
 /* بقع ضوئية متحركة (color blobs) */
 .fx-blob{
