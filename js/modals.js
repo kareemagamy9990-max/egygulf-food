@@ -11,6 +11,7 @@
             const packImgs = (packInfo && PACK_IMAGES[packInfo.key]) ? PACK_IMAGES[packInfo.key] : null;
 
             const pmImg = document.getElementById('pm-img');
+            pmImg.onerror = () => { if (d.img && pmImg.src.indexOf(d.img) === -1) pmImg.src = d.img; };
             pmImg.src = packImgs ? packImgs[0] : (d.img || '');
             pmImg.alt = d.name;
             pmImg.style.transform = 'scale(0.7) translateY(20px)';
@@ -55,9 +56,15 @@
                     const thumb = document.createElement('div');
                     thumb.className = 'pm-gallery-thumb' + (i===0?' active':'');
                     const img = document.createElement('img');
-                    img.src = src;
                     img.alt = 'Pack ' + (i+1);
                     img.loading = 'lazy';
+                    // لو الصورة مش موجودة/مكسورة، اخفي الـ thumbnail والـ dot بتاعها
+                    img.onerror = () => {
+                        thumb.style.display = 'none';
+                        const dot = dotsEl.children[i];
+                        if (dot) dot.style.display = 'none';
+                    };
+                    img.src = src;
                     thumb.appendChild(img);
                     thumb.onclick = () => switchPackImg(packImgs, i);
                     trackEl.appendChild(thumb);
