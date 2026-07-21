@@ -50,11 +50,6 @@ const PACK_IMAGES = {
   'crazy': [
     'packs/crazy-1.webp',
     'packs/crazy-2.webp',
-    'packs/crazy-3.webp',
-    'packs/crazy-4.webp',
-    'packs/crazy-5.webp',
-    'packs/crazy-6.webp',
-    'packs/crazy-7.webp',
   ],
   'zegzag': [
     'packs/zegzag-1.webp',
