@@ -1639,10 +1639,6 @@
             box-shadow: 0 24px 64px rgba(0, 0, 0, .5)
         }
         
-        .p-card.featured {
-            grid-column: span 2
-        }
-        
         .p-visual {
             height: 160px;
             display: flex;
@@ -1651,10 +1647,6 @@
             position: relative;
             overflow: hidden;
             flex-shrink: 0
-        }
-        
-        .p-card.featured .p-visual {
-            height: 200px
         }
         
         .p-glow {
@@ -1714,10 +1706,6 @@
             filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.7));
         }
         
-        .p-card.featured .p-em {
-            font-size: 5rem
-        }
-        
         .p-body {
             padding: 1.3rem;
             flex: 1;
@@ -1741,10 +1729,6 @@
             line-height: 1.2;
             margin-bottom: .5rem;
             letter-spacing: -.01em
-        }
-        
-        .p-card.featured .p-name {
-            font-size: 1.2rem
         }
         
         .p-desc {
@@ -2530,18 +2514,6 @@
             }
             .prod-grid {
                 grid-template-columns: repeat(2, 1fr)
-            }
-            .p-card.featured {
-                grid-column: span 1
-            }
-            .p-card.featured .p-visual {
-                height: 160px
-            }
-            .p-card.featured .p-em {
-                font-size: 3.8rem
-            }
-            .p-card.featured .p-name {
-                font-size: .95rem
             }
         }
         
