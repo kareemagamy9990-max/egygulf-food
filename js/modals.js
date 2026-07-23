@@ -1,5 +1,15 @@
 /* ══ MODAL LOGIC — openPModal, closePModal, openBModal, closeBModal ══ */
 
+/* ══ PRODUCT MODAL — IMAGE NAV STATE ══ */
+        let pmCurrentImgs = null;
+        let pmCurrentIdx = 0;
+
+        function pmNavImage(dir) {
+            if (!pmCurrentImgs || pmCurrentImgs.length < 2) return;
+            pmCurrentIdx = (pmCurrentIdx + dir + pmCurrentImgs.length) % pmCurrentImgs.length;
+            switchPackImg(pmCurrentImgs, pmCurrentIdx);
+        }
+
 /* ══ PRODUCT MODAL ══ */
         function openPModal(id) {
             const d = PRODUCTS[id];
@@ -21,6 +31,15 @@
                 pmImg.style.transform = 'scale(1) translateY(0)';
                 pmImg.style.opacity = '1';
             }, 80);
+
+            pmCurrentImgs = (packImgs && packImgs.length > 1) ? packImgs : null;
+            pmCurrentIdx = 0;
+            const prevBtn = document.getElementById('pm-prev');
+            const nextBtn = document.getElementById('pm-next');
+            if (prevBtn && nextBtn) {
+                prevBtn.style.display = pmCurrentImgs ? '' : 'none';
+                nextBtn.style.display = pmCurrentImgs ? '' : 'none';
+            }
 
             const dotsEl = document.getElementById('pm-dots');
             dotsEl.innerHTML = '';
@@ -77,6 +96,8 @@
         }
 
         function switchPackImg(imgs, idx) {
+            pmCurrentImgs = imgs;
+            pmCurrentIdx = idx;
             const pmImg = document.getElementById('pm-img');
             pmImg.style.opacity = '0';
             pmImg.style.transform = 'scale(0.92)';
@@ -153,4 +174,30 @@
                 closePModal();
                 closeBModal()
             }
+            if (document.getElementById('pmodal').classList.contains('open')) {
+                if (e.key === 'ArrowRight') pmNavImage(1);
+                if (e.key === 'ArrowLeft') pmNavImage(-1);
+            }
         });
+
+        /* Swipe support على صورة المنتج (موبايل) */
+        (function () {
+            const hero = document.getElementById('pm-hero');
+            if (!hero) return;
+            let sx = 0, sy = 0, tracking = false;
+            hero.addEventListener('touchstart', e => {
+                if (e.touches.length !== 1) return;
+                sx = e.touches[0].clientX;
+                sy = e.touches[0].clientY;
+                tracking = true;
+            }, { passive: true });
+            hero.addEventListener('touchend', e => {
+                if (!tracking) return;
+                tracking = false;
+                const dx = e.changedTouches[0].clientX - sx;
+                const dy = e.changedTouches[0].clientY - sy;
+                if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+                    pmNavImage(dx < 0 ? 1 : -1);
+                }
+            }, { passive: true });
+        })();
