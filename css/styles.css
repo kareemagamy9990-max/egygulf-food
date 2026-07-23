@@ -2534,6 +2534,15 @@
             .p-card.featured {
                 grid-column: span 1
             }
+            .p-card.featured .p-visual {
+                height: 160px
+            }
+            .p-card.featured .p-em {
+                font-size: 3.8rem
+            }
+            .p-card.featured .p-name {
+                font-size: .95rem
+            }
         }
         
         @media(max-width:640px) {
