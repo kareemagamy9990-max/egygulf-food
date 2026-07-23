@@ -30,6 +30,8 @@
                 <!-- Product image in modal -->
                 <img id="pm-img" src="" alt="" style="position:relative;z-index:1;max-height:185px;max-width:52%;object-fit:contain;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.7));transition:transform .5s cubic-bezier(.34,1.56,.64,1);">
                 <button class="pm-close" onclick="closePModal()">✕</button>
+                <button class="pm-nav-arrow pm-nav-prev" id="pm-prev" onclick="pmNavImage(-1)" aria-label="Previous image" style="display:none">‹</button>
+                <button class="pm-nav-arrow pm-nav-next" id="pm-next" onclick="pmNavImage(1)" aria-label="Next image" style="display:none">›</button>
                 <div class="pm-hero-nav" id="pm-dots"></div>
             </div>
             <div class="pm-body">
